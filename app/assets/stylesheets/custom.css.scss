@@ -8,12 +8,8 @@ $gray-medium-light: #eaeaea;
 
 /* universal */
 
-* {
-  border: 2px black solid;
-}
 
 #map_canvas {
-  border: 2px red solid;
   height: 500px;
 }
 
@@ -106,4 +102,20 @@ footer {
       margin-left: 15px;
     }
   }
+}
+
+.adp {
+    background-color: white;
+}
+
+.warnbox-content {
+    background-color: Tomato;
+}
+
+.adp-placemark {
+    display:none;
+}
+
+.adp-summary {
+    display:none;
 }
