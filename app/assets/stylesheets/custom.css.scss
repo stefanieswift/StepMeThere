@@ -8,6 +8,15 @@ $gray-medium-light: #eaeaea;
 
 /* universal */
 
+* {
+  border: 2px black solid;
+}
+
+#map_canvas {
+  border: 2px red solid;
+  height: 500px;
+}
+
 body {
   padding-top: 60px;
 }
@@ -41,12 +50,12 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 2.5em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $gray-light;
+  color: black;
 }
 
 p {
