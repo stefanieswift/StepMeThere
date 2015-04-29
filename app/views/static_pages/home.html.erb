@@ -1,8 +1,8 @@
 <% provide(:title, "Home") %>
-<h1>Calculate Route!</h1>
+<h1 class="center">Calculate Route:</h1>
 
 <div id="form">
-  <form id="calculate-route" name="calculate-route" action="#" method="get">
+  <form class="center" id="calculate-route" name="calculate-route" action="#" method="get">
       <label>First address: </label>
       <input type="text" name="address1" id="from" size="50"/>
       <a id="from-link" href="#">Get my position</a>
@@ -19,3 +19,7 @@
     <div id="map_canvas"></div>
     <div id="directions-panel"></div>
   </div>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+
+
