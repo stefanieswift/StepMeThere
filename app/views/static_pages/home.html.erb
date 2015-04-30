@@ -16,17 +16,24 @@
       </p>
          <label>Step Count: </label>
          <input type="integer" name="steps" id="steps" size="10" required>
-      <input type="button" id="submit" value="Show"  onclick="initialize();"/>
+      <input type="button" id="submit" value="Show" />
+      <input type="reset" value="Reset"/>
   </form>
 </div>
 
 <div id = "map_route">
-  <div id="map_canvas"></div>
-  <div id="overlay">
-     <div>
-     </div>
+  <div id="map-canvas"></div>
+  <div class="map_hide" id="map_canvas"></div>
+  <div class="map_hide" id="directions-panel"></div>
+  <div class="reset_box">
+    <div id="step-count" class="center"></div>
+    <button class="map">Map a new route</button>
+  </div>
 </div>
-  <div id="directions-panel"></div>
+<div id = "overlay">
+  <div><h4 class="center">We are finding your perfect route</h4>
+       <img class="center" src="http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif">
+  </div>
 </div>
 
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>

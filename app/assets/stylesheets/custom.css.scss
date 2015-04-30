@@ -141,13 +141,13 @@ footer {
 
 #directions-panel > div > div > div > table > tbody > tr{
     width: 100%;
-    font-family: 'Amatic SC', serif;
-    font-size:1.5em;
+    font-family: 'Josefin Slab', serif;
+    font-size:1.3em;
 }
 
 #directions-panel > div > div > div > table > tbody > tr{
     width: 100%;
-    font-family: 'Amatic SC', serif;
+    font-family: 'Josefin Slab', serif;
 }
 
 
@@ -165,7 +165,6 @@ footer {
 
 #map_canvas {
   width: 70%;
-  border: 2px solid black;
   float: left;
   border: 2px solid LightGray;
   height: 100%;
@@ -276,7 +275,6 @@ input {
  }
 }
 form p label{
-  font-family: 'Indie Flower', serif;
   font-size: 1em;
 }
 
@@ -296,11 +294,47 @@ form p label{
      width:300px;
      margin: 100px auto;
      background-color: #fff;
-     border:1px solid #000;
+     border:1px solid midnightblue;
      padding:15px;
      text-align:center;
+     font-family: 'Amatic SC', serif;
 }
 
 .route {
   display:none;
+}
+
+body > div.container > a {
+    visibility: hidden;
+}
+
+#step-count {
+    font-family: "Josefin Slab";
+    font-size: 1.3em;
+    width: 70%;
+    border: 2px LightGray solid;
+    float:left;
+}
+
+.map {
+  display: none;
+  float:left; 
+  width: 30%;
+  height:45px;
+  background-color: tomato;
+  text-transform: lowercase;
+  font-family: "Josefin Slab", serif;
+  font-size: 1.2em
+}
+
+.reset_box{
+  width: 100%;
+}
+
+#map-canvas{
+  height:100%;
+}
+
+.map_hide {
+  display: none;
 }
