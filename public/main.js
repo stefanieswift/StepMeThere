@@ -125,6 +125,7 @@ function showMap()
 
   directionsService.route(request, function(response, status)
   {
+    $('#directions-panel > div > div:nth-child(4) > div:nth-child(2) > table > tbody').append('tr');
     if (status == google.maps.DirectionsStatus.OK)
     {
       // directionsDisplay.setDirections(response);
@@ -167,8 +168,7 @@ function showMap()
                   debugger
                   bestWaypnt = latlngPush;
                   directionsDisplay.setDirections(newResponse);
-                  alert(closest);
-                  alert(bestWaypnt);
+                  $('#directions-panel > div > div:nth-child(4) > div:nth-child(2) > table > tbody > tr').last().text('total steps:'+distance)
                 };
             };
           });
@@ -272,3 +272,4 @@ $("#from-link, #to-link").click(function(event) {
     timeout: 10 * 1000 // 10 seconds
   });
 });
+

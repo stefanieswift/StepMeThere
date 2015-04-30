@@ -144,6 +144,11 @@ footer {
     font-family: 'Amatic SC', serif;
 }
 
+#directions-panel > div > div > div > table > tbody > tr{
+    width: 100%;
+    font-family: 'Amatic SC', serif;
+}
+
 
 .adp-directions{
     width:100%;
@@ -245,7 +250,7 @@ input, textarea, select, .uneditable-input {
 
 body > div > h2 {
     margin: 2px;
-    font-color: MidnightBlue;
+    color: MidnightBlue;
 }
 
 input {
@@ -255,4 +260,21 @@ input {
   font-size:.8em;
   padding-top: -10px;
   text-transform:lowercase;
+}
+
+/* media  options*/
+@media (min-width: 320px) and (max-width: 567px){
+.nav_menu ul {
+  display: none;
+}
+}
+
+@media (min-width:568px) {
+ .nav_menu select, .nav_menu button {
+  display: none;
+ }
+}
+form p label{
+  font-family: 'Indie Flower', serif;
+  font-size: 1em;
 }
