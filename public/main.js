@@ -31,6 +31,8 @@ var location1,
 // finds the coordinates for the two locations and calls the showMap() function
 function initialize()
 {
+  $(".form").hide()
+  $(".route").css("display","inline");
   geocoder = new google.maps.Geocoder(); // creating a new geocode object
 
   // getting the two address values
