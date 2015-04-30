@@ -36,7 +36,7 @@ function initialize()
   // getting the two address values
   from = document.getElementById("from").value;
   to = document.getElementById("to").value;
-  stepDistance = (document.getElementById("steps").value)/1.3123359580052494;
+  stepDistance = (document.getElementById("steps").value);
 
 
   // finding out the coordinates
@@ -125,20 +125,20 @@ function showMap()
 
   directionsService.route(request, function(response, status)
   {
-    $('#directions-panel > div > div:nth-child(4) > div:nth-child(2) > table > tbody > tr').append('tr');
-    debugger
+  
     if (status == google.maps.DirectionsStatus.OK)
     {
       // directionsDisplay.setDirections(response);
-      distance = response.routes[0].legs[0].distance.value;
+      distance = response.routes[0].legs[0].distance.value * 1.3123359580052494;
     }
     if(distance > stepDistance){
-      directionsDisplay.setDirections(response);
-      alert("Your step count is smaller than the fastest route")
+      directionsDisplay.setDirections(response); 
+      $("#overlay div").html("<p>The shortest step count is: "+distance+"</p><p>Click here to [<a href='#' onclick='overlay()'>close</a>]</p>");
+                
     } else {
       steppingDistanceDifference = stepDistance/110574.61;
-      for(i = 0; i < 5; i = i + .01){
-        for (j=0; j < 5; j = j + .01){
+      for(i = 0; i < 20; i = i + .005){
+        for (j=0; j < 20; j = j + .005){
         var waypts = [];
         latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
          waypts.push({
@@ -156,24 +156,30 @@ function showMap()
               avoidFerries: true,
             };
           directionsService.route(newRequest, function(newResponse, status){
-              if (status == google.maps.DirectionsStatus.OK){ distance = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
-                if(stepDistance > distance){
+              if (status == google.maps.DirectionsStatus.OK){ 
+                distance = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
+                if(stepDistance >= distance){
                   distanced = stepDistance - distance;
+                  if(distanced < closest){
+                    closest = distanced;
+                    bestWaypnt = latlngPush;
+                    directionsDisplay.setDirections(newResponse);
+                     $("#overlay div").html("<p>Step distance: "+distance+"</p><p>Click here to [<a href='#' onclick='overlay()'>close</a>]</p>");
+                 };
                 } else {
                   distanced = distance - stepDistance;
-                };
-                if(distanced < closest){
-                  closest = distanced;
-                  debugger
-                  bestWaypnt = latlngPush;
-                  directionsDisplay.setDirections(newResponse);
-                  $('#directions-panel > div > div:nth-child(4) > div:nth-child(2) > table > tbody > tr').last().text('total steps:'+distance)
-                  debugger
+                  if(distanced < closest){
+                    closest = distanced;
+                    bestWaypnt = latlngPush;
+                    directionsDisplay.setDirections(newResponse);
+                    $("#overlay div").html("<p>Step distance: "+distance+"</p><p>Click here to [<a href='#' onclick='overlay()'>close</a>]</p>");
+                 };
                 };
             };
           });
         }
       };
+      overlay();
     }; //closing else
   });
 
@@ -273,3 +279,9 @@ $("#from-link, #to-link").click(function(event) {
   });
 });
 
+// overlay
+
+function overlay() {
+	el = document.getElementById("overlay");
+	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
