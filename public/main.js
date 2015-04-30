@@ -125,7 +125,8 @@ function showMap()
 
   directionsService.route(request, function(response, status)
   {
-    $('#directions-panel > div > div:nth-child(4) > div:nth-child(2) > table > tbody').append('tr');
+    $('#directions-panel > div > div:nth-child(4) > div:nth-child(2) > table > tbody > tr').append('tr');
+    debugger
     if (status == google.maps.DirectionsStatus.OK)
     {
       // directionsDisplay.setDirections(response);
@@ -139,8 +140,6 @@ function showMap()
       for(i = 0; i < 5; i = i + .01){
         for (j=0; j < 5; j = j + .01){
         var waypts = [];
-        console.log(i);
-        console.log(j);
         latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
          waypts.push({
             location:latlngPush,
@@ -169,6 +168,7 @@ function showMap()
                   bestWaypnt = latlngPush;
                   directionsDisplay.setDirections(newResponse);
                   $('#directions-panel > div > div:nth-child(4) > div:nth-child(2) > table > tbody > tr').last().text('total steps:'+distance)
+                  debugger
                 };
             };
           });
