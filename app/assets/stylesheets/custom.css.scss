@@ -69,7 +69,7 @@ p {
   margin-right: 10px;
   font-size: 2em;
   color: GhostWhite;
-  text-transform: uppercase;
+  text-transform: downcase;
   font-family: 'Amatic SC', serif;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -191,4 +191,68 @@ footer {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+/* sidebar */
+
+aside {
+  section.user_info {
+    margin-top: 20px;
+  }
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+/* forms */
+
+#from, #to{
+    margin-bottom:-5px;
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  @include box_sizing;
+  margin-bottom:10px;
+}
+
+body > div > h2 {
+    margin: 2px;
+    font-color: MidnightBlue;
+}
+
+input {
+  height: auto !important;
+}
+.getlocation{
+  font-size:.8em;
+  padding-top: -10px;
+  text-transform:lowercase;
 }
