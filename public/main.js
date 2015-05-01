@@ -15,7 +15,7 @@ $(document).ready(function(){
 
  $("#submit").on("click", function(e){
    e.preventDefault();
-   $(".map-canvas").hide();
+   $("#map-canvas").hide();
    overlay();
 // testing the location between the two points
   var location1,
