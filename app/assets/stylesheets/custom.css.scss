@@ -183,6 +183,7 @@ footer {
   margin: 0 auto;
   height: 500px;
   width: 100%;
+  display:none;
 }
 
 .adp-legal{
@@ -243,7 +244,7 @@ aside {
 }
 
 input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
+  border: 1px solid lightgray;
   width: 100%;
   @include box_sizing;
   margin-bottom:10px;
@@ -251,7 +252,7 @@ input, textarea, select, .uneditable-input {
 
 body > div > h2 {
     margin: 2px;
-    color: MidnightBlue;
+    color: midnightblue;
 }
 
 input {
@@ -264,10 +265,66 @@ input {
 }
 
 /* media  options*/
-@media (min-width: 320px) and (max-width: 567px){
-.nav_menu ul {
-  display: none;
-}
+
+@media screen and (max-width: 600px) {
+	.nav {
+		position: relative;
+		min-height: 40px;
+    float:right;
+    margin-left: -90px;
+	}	
+	.nav ul {
+		width: 100px;
+		padding: 5px 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border: solid 1px #aaa;
+		background: lightgray url('https://scontent-2.2914.fna.fbcdn.net/hphotos-xpf1/v/t1.0-9/11162202_2656200839384_3294066134363980616_n.jpg?oh=0e7e4c6ac166db585b02b3dd86f706b8&oe=55CF96CB');
+		border-radius: 5px;
+		box-shadow: 0 1px 2px rgba(0,0,0,.3);
+	}
+	.nav li {
+		display: none; /* hide all <li> items */
+		margin: 0;
+    color: black
+	}
+	.nav .current {
+		display: block; /* show only current <li> item */
+	}
+	.nav a {
+		display: block;
+		padding: 5px 5px 5px 32px;
+		text-align: left;
+	}
+	.nav .current a {
+		background: none;
+		color: #521dcf;
+	}
+
+	/* on nav hover */
+	.nav ul:hover {
+		background-image: none;
+	}
+	.nav ul:hover li {
+		display: block;
+		margin: 0 0 5px;
+	}
+	.nav ul:hover .current {
+		background: url(images/icon-check.png) no-repeat 10px 7px;
+	}
+
+	/* right nav */
+	.nav.right ul {
+		left: auto;
+		right: 0;
+	}
+
+	/* center nav */
+	.nav.center ul {
+		left: 50%;
+		margin-left: -90px;
+	}
 #map-canvas {
   display:none;
 }
@@ -275,8 +332,8 @@ input {
   height:100%;
   width: 100%;
 }
-
 }
+
 
 @media (min-width:568px) {
  .nav_menu select, .nav_menu button {
