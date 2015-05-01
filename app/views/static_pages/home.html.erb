@@ -1,6 +1,6 @@
 <% provide(:title, "Home") %>
-<h2 class="center form">Calculate Route:</h2>
-<h2 class="center route">Route: </h2>
+<h2 class="form">Calculate Route:</h2>
+<div class="wide"><h2 class="route">Route: </h2></div>
 
 <div class="form">
   <form class="center" id="calculate-route" name="calculate-route" action="#" method="get">
@@ -26,8 +26,8 @@
   <div class="map_hide" id="map_canvas"></div>
   <div class="map_hide" id="directions-panel"></div>
   <div class="reset_box">
-    <div id="step-count" class="center"></div>
-    <button class="map">Map a new route</button>
+    <div class="map_hide" id="step-count" class="center"></div>
+    <button class="map map_hide">Map a new route</button>
   </div>
 </div>
 <div id = "overlay">

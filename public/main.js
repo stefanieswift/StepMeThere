@@ -7,8 +7,11 @@ $(document).ready(function(){
         };
         // Draw the map
         var mapObject = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+        
 
  });
+ 
+ 
 
  $("#submit").on("click", function(e){
    e.preventDefault();
@@ -141,8 +144,8 @@ $(document).ready(function(){
                   
       } else {
         steppingDistanceDifference = stepDistance/110574.61;
-        for(i = 0; i < 20; i = i + .005){
-          for (j=0; j < 20; j = j + .005){
+        for(i = 0; i < 10; i = i + .005){
+          for (j=0; j < 10; j = j + .005){
           var waypts = [];
           latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
            waypts.push({
@@ -253,8 +256,30 @@ $(document).ready(function(){
   
   // funcion to test added
   
-  
-  
+ 
+ });
+
+// overlay
+
+function overlay() {
+	el = document.getElementById("overlay");
+	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+
+// map button
+
+$(".map").on("click", function(e){
+  e.preventDefault();
+  window.scrollTo(0, 0);
+  $("#calculate-route")[0].reset();
+  $("#directions-panel").empty()
+  $("#map-canvas").show();
+  $(".map_hide").css("display", "none");
+  $(".form").show();
+  $overlay();
+  $(".map").css("display", "none");
+})
+
   // If the browser supports the Geolocation API
   if (typeof navigator.geolocation == "undefined") {
     $("#error").text("Your browser doesn't support the Geolocation API");
@@ -284,22 +309,3 @@ $(document).ready(function(){
       timeout: 10 * 1000 // 10 seconds
     });
   });
- });
-
-// overlay
-
-function overlay() {
-	el = document.getElementById("overlay");
-	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-}
-
-// map button
-
-$(".map").on("click", function(e){
-  e.preventDefault();
-  $("#map-canvas").show();
-  $(".map_hide").css("display", "none");
-  $(".form").show();
-  $overlay();
-  $(".map").css("display", "none");
-})

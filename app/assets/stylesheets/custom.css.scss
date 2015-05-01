@@ -54,6 +54,7 @@ h2 {
   text-align: center;
   font-weight: normal;
   color: black;
+  font-family:  "Josefin Slab", serif;
 }
 
 p {
@@ -274,8 +275,11 @@ input {
   display: none;
  }
 }
-form p label{
-  font-size: 1em;
+form label{
+  font-size: 1.2em;
+  font-family:  "Josefin Slab", serif; 
+  font-weight: normal;
+  text-transform: lowercase;
 }
 
 /*modal */
@@ -302,6 +306,7 @@ form p label{
 
 .route {
   display:none;
+  font-family:  "Josefin Slab", serif;
 }
 
 body > div.container > a {
@@ -337,4 +342,8 @@ body > div.container > a {
 
 .map_hide {
   display: none;
+}
+
+.wide{
+  width:100%;
 }
