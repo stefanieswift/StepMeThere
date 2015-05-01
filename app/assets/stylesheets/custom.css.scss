@@ -264,6 +264,19 @@ input {
   text-transform:lowercase;
 }
 
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
 /* media  options*/
 
 @media screen and (max-width: 600px) {
