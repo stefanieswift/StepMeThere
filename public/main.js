@@ -146,8 +146,8 @@ $(document).ready(function(){
                   
       } else {
         steppingDistanceDifference = stepDistance/110574.61;
-        for(i = 0; i < 15; i += .005){
-          for (j=0; j < 15; j += .005){
+        for(i = 0; i < 5; i -= .01){
+          for (j=0; j < 5; j -= .01){
           var waypts = [];
           latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
            waypts.push({
