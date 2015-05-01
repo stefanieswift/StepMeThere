@@ -26,6 +26,7 @@ $(document).ready(function(){
       geocoder,
       map,
       distance,
+      closest_distance,
       stepDistance,
       distanced,
       steppingDistanceDifference,
@@ -145,8 +146,8 @@ $(document).ready(function(){
                   
       } else {
         steppingDistanceDifference = stepDistance/110574.61;
-        for(i = 0; i < 8; i += .005){
-          for (j=0; j < 8; j += .005){
+        for(i = 0; i < 15; i += .005){
+          for (j=0; j < 15; j += .005){
           var waypts = [];
           latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
            waypts.push({
@@ -171,16 +172,18 @@ $(document).ready(function(){
                     if(distanced < closest){
                       closest = distanced;
                       bestWaypnt = latlngPush;
+                      closest_distance = distance;
                       directionsDisplay.setDirections(newResponse);
-                       $("#step-count").html("<p>Step distance: "+distance+"</p>");
+                       $("#step-count").html("<p>Step distance: "+closest_distance+"</p>");
                    };
                   } else {
                     distanced = distance - stepDistance;
                     if(distanced < closest){
                       closest = distanced;
                       bestWaypnt = latlngPush;
+                      closest_distance = distance;
                       directionsDisplay.setDirections(newResponse);
-                      $("#step-count").html("<p>Step distance: "+distance+"</p>");
+                       $("#step-count").html("<p>Step distance: "+closest_distance+"</p>");
                    };
                   };
               };
