@@ -15,6 +15,7 @@ $(document).ready(function(){
 
  $("#submit").on("click", function(e){
    e.preventDefault();
+   $(".map-canvas").hide();
    overlay();
 // testing the location between the two points
   var location1,
@@ -35,7 +36,7 @@ $(document).ready(function(){
       biggerLng;
   
   // finds the coordinates for the two locations and calls the showMap() function
-    $(".map-canvas").hide();
+    
     $(".form").hide();
     $(".map_hide").css("display", "inline");
     $(".route").css("display","inline");
