@@ -110,8 +110,10 @@ footer {
 /*map settings */
 
 .adp {
-  font-family: 'Amatic SC', serif;
+  font-family: "Josefin Slab", serif;
   background-color: white;
+  height: 610px;
+  overflow:scroll;
 }
 
 .warnbox-content {
@@ -139,7 +141,7 @@ footer {
 #directions-panel > div > div > div > table > tbody > tr > td:nth-child(2){
     display:none;
 }
-
+ 
 #directions-panel > div > div > div > table > tbody > tr{
     width: 100%;
     font-family: 'Josefin Slab', serif;
@@ -168,7 +170,7 @@ footer {
   width: 70%;
   float: left;
   border: 2px solid LightGray;
-  height: 100%;
+  height: 600px;
 }
 
 #directions-panel {
@@ -279,28 +281,28 @@ input {
 }
 /* media  options*/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 695px) {
 	.nav {
 		position: relative;
 		min-height: 40px;
     float:right;
-    margin-left: -90px;
+    margin-left: -60px;
 	}	
 	.nav ul {
-		width: 100px;
+		width: 69px;
 		padding: 5px 0;
 		position: absolute;
 		top: 0;
 		left: 0;
-		border: solid 1px #aaa;
-		background: lightgray url('https://scontent-2.2914.fna.fbcdn.net/hphotos-xpf1/v/t1.0-9/11162202_2656200839384_3294066134363980616_n.jpg?oh=0e7e4c6ac166db585b02b3dd86f706b8&oe=55CF96CB');
+		background: #222222 url('https://scontent-2.2914.fna.fbcdn.net/hphotos-xpa1/v/t1.0-9/11203150_2656543167942_3759237938736669516_n.jpg?oh=58098c7ae8b475f16194188daab6e9de&oe=55DC1DA6') no-repeat;
+    background-position: right center;
 		border-radius: 5px;
 		box-shadow: 0 1px 2px rgba(0,0,0,.3);
 	}
 	.nav li {
 		display: none; /* hide all <li> items */
 		margin: 0;
-    color: black
+    color: #222222;
 	}
 	.nav .current {
 		display: block; /* show only current <li> item */
@@ -345,14 +347,31 @@ input {
   height:100%;
   width: 100%;
 }
+#map_canvas{
+    height:50%;
+    width: 100%;
+    min-height: 400px; 
+}
+
+.adp{
+    width:100%; 
+}
+
+#directions-panel {
+    width:100%;
+    height:50%;
+    max-height: 400px;
+    overflow:scroll;
+}
+
+#step-count{
+    height:45px;
+    font-size:.8em;
+}
+
 }
 
 
-@media (min-width:568px) {
- .nav_menu select, .nav_menu button {
-  display: none;
- }
-}
 form label{
   font-size: 1.2em;
   font-family:  "Josefin Slab", serif; 
@@ -373,7 +392,8 @@ form label{
 }
 
 #overlay div {
-     width:300px;
+     width: 100%;
+     height:100%;
      margin: 100px auto;
      background-color: #fff;
      border:1px solid midnightblue;
@@ -397,6 +417,7 @@ body > div.container > a {
     width: 70%;
     border: 2px LightGray solid;
     float:left;
+    overflow:scroll;
 }
 
 .map {
@@ -412,6 +433,7 @@ body > div.container > a {
 
 .reset_box{
   width: 100%;
+  clear: both;
 }
 
 #map-canvas{
@@ -425,3 +447,4 @@ body > div.container > a {
 .wide{
   width:100%;
 }
+

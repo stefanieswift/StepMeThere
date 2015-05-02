@@ -1,6 +1,6 @@
 <% provide(:title, "Home") %>
 <h2 class="form">Calculate Route:</h2>
-<div class="wide"><h2 class="route">Route: </h2></div>
+<div class="wide"><h2 class="route">route: </h2></div>
 
 <div class="form">
   <form class="center" id="calculate-route" name="calculate-route" action="#" method="get">
@@ -16,20 +16,18 @@
       </p>
          <label>Step Count: </label>
          <input type="integer" name="steps" id="steps" size="10" required>
-      <input type="button" id="submit" value="Show" />
+      <input type="button" id="submit" value="Show" onclick="initialize();" />
       <input type="reset" value="Reset"/>
   </form>
 </div>
 
-<div id = "map_route">
-  <div id="map-canvas"></div>
+<div id="map-canvas"></div>
   <div class="map_hide" id="map_canvas"></div>
   <div class="map_hide" id="directions-panel"></div>
   <div class="reset_box">
     <div class="map_hide" id="step-count" class="center"></div>
-    <button class="map map_hide">Map a new route</button>
+    <button class="map map_hide">new route</button>
   </div>
-</div>
 <div id = "overlay">
   <div><h4 class="center">We are finding your perfect route</h4>
        <img class="center" src="http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif">

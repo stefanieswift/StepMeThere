@@ -13,188 +13,176 @@ $(document).ready(function(){
  
  
 
- $("#submit").on("click", function(e){
-   e.preventDefault();
-   $("#map-canvas").hide();
-   overlay();
-// testing the location between the two points
-  var location1,
-      location2,
-      from,
-      to,
-      latlng,
-      geocoder,
-      map,
-      distance,
-      closest_distance,
-      stepDistance,
-      distanced,
-      steppingDistanceDifference,
-      closest = 40000000,
-      bestWaypnt,
-      latlngPush,
-      bigger,
-      biggerLng;
-  
-  // finds the coordinates for the two locations and calls the showMap() function
-    
-    $(".form").hide();
-    $(".map_hide").css("display", "inline");
-    $(".route").css("display","inline");
-    geocoder = new google.maps.Geocoder(); // creating a new geocode object
-  
-    // getting the two address values
-    from = document.getElementById("from").value;
-    to = document.getElementById("to").value;
-    stepDistance = (document.getElementById("steps").value);
-  
-  
-    // finding out the coordinates
-    if (geocoder)
-    {
-      geocoder.geocode( { 'address': from}, function(results, status)
-      {
-        if (status == google.maps.GeocoderStatus.OK)
-        {
-          //location of first address (latitude + longitude)
-          location1 = results[0].geometry.location;
-        } else
-        {
-          alert("Geocode was not successful for the following reason: " + status);
-        }
-      });
-      geocoder.geocode( { 'address': to}, function(results, status)
-      {
-        if (status == google.maps.GeocoderStatus.OK)
-        {
-          //location of second address (latitude + longitude)
-          location2 = results[0].geometry.location;
-          // calling the showMap() function to create and show the map
-          showMap();
-        } else
-        {
-          alert("Geocode was not successful for the following reason: " + status);
-        }
-      });
-    }
-  // creates and shows the map
-  function showMap()
+var location1,
+    location2,
+    from,
+    to,
+    latlng,
+    geocoder,
+    map,
+    distance,
+    stepDistance,
+    distanced,
+    steppingDistanceDifference,
+    closest = 40000000,
+    bestWaypnt,
+    latlngPush,
+    bigger,
+    biggerLng;
+
+// finds the coordinates for the two locations and calls the showMap() function
+function initialize()
+{
+  closest = 40000000;
+  $("#map-canvas").hide();
+  overlay();
+  $(".form").hide();
+  $(".route").css("display","inline");
+  geocoder = new google.maps.Geocoder(); // creating a new geocode object
+
+  // getting the two address values
+  from = document.getElementById("from").value;
+  to = document.getElementById("to").value;
+  stepDistance = (document.getElementById("steps").value)/1.3123359580052494;
+
+
+  // finding out the coordinates
+  if (geocoder)
   {
-  
-    // center of the map (compute the mean value between the two locations)
-    latlng = new google.maps.LatLng((location1.lat()+location2.lat())/2,(location1.lng()+location2.lng())/2);
-    if(location1.lat() > location2.lat()){
-      bigger = location1.lat();
-    } else {
-      bigger = location2.lat();
-    };
-    if(location1.lng() > location2.lng()){
-      biggerLng = location1.lng();
-    } else {
-      biggerLng = location2.lng();
-    };
-  
-  
-  
-    // set map options
-      // set zoom level
-      // set center
-      // map type
-    var mapOptions =
+    geocoder.geocode( { 'address': from}, function(results, status)
     {
-      zoom: 7,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.HYBRID
-    };
-  
-    // create a new map object
-      // set the div id where it will be shown
-      // set the map options
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-  
-    // show route between the points
-    directionsService = new google.maps.DirectionsService();
-    directionsDisplay = new google.maps.DirectionsRenderer(
-    {
-      suppressMarkers: true,
-      suppressInfoWindows: true
-    });
-    directionsDisplay.setMap(map);
-     directionsDisplay.setPanel(document.getElementById('directions-panel'));
-    var request = {
-      origin:location1,
-      destination:location2,
-      travelMode: google.maps.DirectionsTravelMode.WALKING,
-      avoidHighways: true,
-      avoidTolls: true,
-      avoidFerries: true,
-    };
-  
-  
-    directionsService.route(request, function(response, status)
-    {
-    
-      if (status == google.maps.DirectionsStatus.OK)
+      if (status == google.maps.GeocoderStatus.OK)
       {
-        // directionsDisplay.setDirections(response);
-        distance = response.routes[0].legs[0].distance.value * 1.3123359580052494;
+        //location of first address (latitude + longitude)
+        location1 = results[0].geometry.location;
+      } else
+      {
+        alert("Geocode was not successful for the following reason: " + status);
       }
-      if(distance > stepDistance){
-        directionsDisplay.setDirections(response); 
-        $("#overlay div").html("<p>The shortest step count is: "+distance+"</p><p>Click here to [<a href='#' onclick='overlay()'>close</a>]</p>");
-        overlay();
-                  
-      } else {
-        steppingDistanceDifference = stepDistance/110574.61;
-        for(i = 0; i < 5; i -= .1){
-          for (j=0; j < 5; j -= .1){
-          var waypts = [];
-          latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
-           waypts.push({
-              location:latlngPush,
-              stopover:true
-            });
-              var newRequest = {
-                origin:location1,
-                destination:location2,
-                waypoints: waypts,
-                optimizeWaypoints: true,
-                travelMode: google.maps.DirectionsTravelMode.WALKING,
-                avoidHighways: true,
-                avoidTolls: true,
-                avoidFerries: true,
-              };
-            directionsService.route(newRequest, function(newResponse, status){
-                if (status == google.maps.DirectionsStatus.OK){ 
-                  distance = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
-                  if(stepDistance >= distance){
-                    distanced = stepDistance - distance;
-                    if(distanced < closest){
-                      closest = distanced;
-                      bestWaypnt = latlngPush;
-                      closest_distance = distance;
-                      directionsDisplay.setDirections(newResponse);
-                       $("#step-count").html("<p>Step distance: "+closest_distance+"</p>");
-                   };
-                  } else {
-                    distanced = distance - stepDistance;
-                    if(distanced < closest){
-                      closest = distanced;
-                      bestWaypnt = latlngPush;
-                      closest_distance = distance;
-                      directionsDisplay.setDirections(newResponse);
-                       $("#step-count").html("<p>Step distance: "+closest_distance+"</p>");
-                   };
-                  };
-              };
-            });
-          }
-        };
-        overlay();
-        $(".map").css("display", "inline");
-        $("#map-canvas").hide();
-      }; //closing else
     });
+    geocoder.geocode( { 'address': to}, function(results, status)
+    {
+      if (status == google.maps.GeocoderStatus.OK)
+      {
+        //location of second address (latitude + longitude)
+        location2 = results[0].geometry.location;
+        // calling the showMap() function to create and show the map
+        showMap();
+      } else
+      {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+}
+
+// creates and shows the map
+function showMap()
+{
+
+  // center of the map (compute the mean value between the two locations)
+  latlng = new google.maps.LatLng((location1.lat()+location2.lat())/2,(location1.lng()+location2.lng())/2);
+  if(location1.lat() > location2.lat()){
+    bigger = location1.lat();
+  } else {
+    bigger = location2.lat();
+  };
+  if(location1.lng() > location2.lng()){
+    biggerLng = location1.lng();
+  } else {
+    biggerLng = location2.lng();
+  };
+
+
+
+  // set map options
+    // set zoom level
+    // set center
+    // map type
+  var mapOptions =
+  {
+    zoom: 7,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+  };
+
+  // create a new map object
+    // set the div id where it will be shown
+    // set the map options
+  map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+  // show route between the points
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer(
+  {
+    suppressMarkers: true,
+    suppressInfoWindows: true
+  });
+  directionsDisplay.setMap(map);
+   directionsDisplay.setPanel(document.getElementById('directions-panel'));
+  var request = {
+    origin:location1,
+    destination:location2,
+    travelMode: google.maps.DirectionsTravelMode.WALKING,
+    avoidHighways: true,
+    avoidTolls: true,
+    avoidFerries: true,
+  };
+
+
+  directionsService.route(request, function(response, status)
+  {
+    
+    if (status == google.maps.DirectionsStatus.OK)
+    {
+      // directionsDisplay.setDirections(response);
+      distance = response.routes[0].legs[0].distance.value;
+    }
+    if(distance > stepDistance){
+      directionsDisplay.setDirections(response);
+    $("#overlay div").html("<p>The shortest step count is: "+distance+"</p><p>Click here to [<a href='#' onclick='overlay()'>close</a>]</p>");
+    } else {
+      steppingDistanceDifference = stepDistance/110574.61;
+      for(i = 0; i < 8; i = i + .005){
+        for (j=0; j < 8; j = j + .005){
+        var waypts = [];
+        latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
+         waypts.push({
+            location:latlngPush,
+            stopover:true
+          });
+            var newRequest = {
+              origin:location1,
+              destination:location2,
+              waypoints: waypts,
+              optimizeWaypoints: true,
+              travelMode: google.maps.DirectionsTravelMode.WALKING,
+              avoidHighways: true,
+              avoidTolls: true,
+              avoidFerries: true,
+            };
+          directionsService.route(newRequest, function(newResponse, status){
+              if (status == google.maps.DirectionsStatus.OK){ distance = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
+                if(stepDistance > distance){
+                  distanced = stepDistance - distance;
+                } else {
+                  distanced = distance - stepDistance;
+                };
+                if(distanced < closest){
+                  closest = distanced;
+                  bestWaypnt = latlngPush;
+                  directionsDisplay.setDirections(newResponse);
+                $("#step-count").html("<p>Step distance: "+distance+"</p>");
+                };
+            };
+          });
+        }
+      };
+      overlay();
+      $("#map_route").css("display", "inline");
+      $(".map_hide").css("display", "inline");
+    }; //closing else
+  });
   
     // show a line between the two points
     var line = new google.maps.Polyline({
@@ -260,29 +248,26 @@ $(document).ready(function(){
   
   // funcion to test added
   
- 
- });
 
 // overlay
 
 function overlay() {
 	el = document.getElementById("overlay");
 	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-}
+};
 
 // map button
 
-$(".map").on("click", function(e){
+$("button").on("click", function(e){
   e.preventDefault();
-  window.scrollTo(0, 0);
   $("#calculate-route")[0].reset();
-  $("#directions-panel").empty()
-  $("#map-canvas").show();
-  $(".map_hide").css("display", "none");
+  $("#directions-panel").empty();
+  $("#map-canvas").css("display", "inline");
   $(".form").show();
-  $overlay();
-  $(".map").css("display", "none");
-})
+  $(".map_hide").css("display", "none");
+  $("#map_route").css("display", "none");
+   window.scrollTo(0, 0);
+});
 
   // If the browser supports the Geolocation API
   if (typeof navigator.geolocation == "undefined") {
