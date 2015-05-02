@@ -143,8 +143,8 @@ function showMap()
     $("#overlay div").html("<p>The shortest step count is: "+distance+"</p><p>Click here to [<a href='#' onclick='overlay()'>close</a>]</p>");
     } else {
       steppingDistanceDifference = stepDistance/110574.61;
-      for(i = 0; i < 8; i = i + .005){
-        for (j=0; j < 8; j = j + .005){
+      for(i = 0; i < 15; i = i + .005){
+        for (j=0; j < 15; j = j + .005){
         var waypts = [];
         latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
          waypts.push({
@@ -165,14 +165,20 @@ function showMap()
               if (status == google.maps.DirectionsStatus.OK){ distance = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
                 if(stepDistance > distance){
                   distanced = stepDistance - distance;
+                    if(distanced < closest){
+                    closest = distanced;
+                    bestWaypnt = latlngPush;
+                    directionsDisplay.setDirections(newResponse);
+                  $("#step-count").html("<p>Step distance: "+distance+"</p>");
+                  };
                 } else {
                   distanced = distance - stepDistance;
-                };
-                if(distanced < closest){
-                  closest = distanced;
-                  bestWaypnt = latlngPush;
-                  directionsDisplay.setDirections(newResponse);
-                $("#step-count").html("<p>Step distance: "+distance+"</p>");
+                  if(distanced < closest){
+                    closest = distanced;
+                    bestWaypnt = latlngPush;
+                    directionsDisplay.setDirections(newResponse);
+                  $("#step-count").html("<p>Step distance: "+distance+"</p>");
+                 };
                 };
             };
           });
