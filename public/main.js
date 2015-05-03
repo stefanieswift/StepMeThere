@@ -43,7 +43,7 @@ function initialize()
   // getting the two address values
   from = document.getElementById("from").value;
   to = document.getElementById("to").value;
-  stepDistance = (document.getElementById("steps").value)/1.3123359580052494;
+  stepDistance = (document.getElementById("steps").value);
 
 
   // finding out the coordinates
@@ -145,8 +145,9 @@ function showMap()
      $("#step-count").html("<p>Sorry, the shortest route is: "+Math.round(distance)+" steps.</p>")
     } else {
       steppingDistanceDifference = stepDistance/110574.61;
+      console.log(steppingDistanceDifference)
       for(i = 0; i < 15; i = i + .005){
-        for (j=0; j < 15; j = j + .005){
+       for (j=0; j < 15; j = j + .005){
         var waypts = [];
         latlngPush = new google.maps.LatLng((bigger+(steppingDistanceDifference/i)),(biggerLng + (steppingDistanceDifference/j)));
          waypts.push({
@@ -164,27 +165,20 @@ function showMap()
               avoidFerries: true,
             };
           directionsService.route(newRequest, function(newResponse, status){
-              if (status == google.maps.DirectionsStatus.OK){ distance = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
-                if(stepDistance > distance){
-                  distanced = stepDistance - distance;
-                    if(distanced < closest){
-                    closest = distanced;
-                    bestWaypnt = latlngPush;
-                    directionsDisplay.setDirections(newResponse);
-                    resizeMap(map);
-                  $("#step-count").html("<p>Steps: "+Math.round(distance)+"</p>");
-                  };
-                } else {
-                  distanced = distance - stepDistance;
-                  if(distanced < closest){
-                    closest = distanced;
-                    bestWaypnt = latlngPush;
-                    directionsDisplay.setDirections(newResponse);
-                    resizeMap(map);
-                    
-                  $("#step-count").html("<p>Steps: "+Math.round(distance)+"</p>");
-                 };
-                };
+              if (status == google.maps.DirectionsStatus.OK){ 
+                distance = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
+                console.log(distance);
+                console.log("closest"+closest)
+                if (stepDistance > distance) distanced = stepDistance - distance;
+                if (stepDistance < distance) distanced = distance - stepDistance;
+                console.log("distanced"+distanced)
+                if(distanced < closest){
+                  closest = distanced;
+                  bestWaypnt = latlngPush;
+                  directionsDisplay.setDirections(newResponse);
+                  resizeMap(map);
+                $("#step-count").html("<p>Steps: "+Math.round(distance)+"</p>");
+                } 
             };
           });
         }
