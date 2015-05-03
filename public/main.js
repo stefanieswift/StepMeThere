@@ -264,7 +264,7 @@ function overlay() {
 
 // map button
 
-$("button").on("click", function(e){
+$("#map_button").on("click", function(e){
   e.preventDefault();
   $("#calculate-route")[0].reset();
   $("#directions-panel").empty();

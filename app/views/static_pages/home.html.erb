@@ -5,28 +5,26 @@
   <form class="center" id="calculate-route" name="calculate-route" action="#" method="get">
       <p>
         <label>First address: </label>
-        <input type="text" name="address1" id="from" size="50" required>
+        <input type="text" class="form-control name="address1" id="from" size="50" required>
         <a class="getlocation" id="from-link" href="#">Get my position</a>
       </p>
       <p>
          <label>Second address: </label>
-         <input type="text" name="address2" id="to" size="50" required>
+         <input type="text" class="form-control" name="address2" id="to" size="50" required>
          <a class="getlocation" id="to-link" href="#">Get my position</a>
       </p>
          <label>Step Count: </label>
-         <input type="integer" name="steps" id="steps" size="10" required>
-      <input type="button" id="submit" value="Show" onclick="initialize();" />
-      <input type="reset" value="Reset"/>
+         <input type="integer" class="form-control" name="steps" id="steps" size="10" required>
+      <input type="button" class="btn btn-primary" id="submit" value="Show" onclick="initialize();" />
+      <input type="reset" class="btn btn-primary" value="Reset"/>
   </form>
 </div>
 
 <div id="map-canvas"></div>
   <div class="map_hide" id="map_canvas"></div>
   <div class="map_hide" id="directions-panel"></div>
-  <div class="reset_box">
-    <div class="map_hide" id="step-count" class="center"></div>
-    <button class="map map_hide">new route</button>
-  </div>
+  <div class="map_hide" id="step-count" class="center"></div>
+  <input type="button" id="map_button" class="map map_hide btn btn-primary" value="new route" />
 <div id = "overlay">
   <div><h4 class="center">We are finding your perfect route</h4>
        <img class="center" src="http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif">

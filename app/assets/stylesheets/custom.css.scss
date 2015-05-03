@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import url(http://fonts.googleapis.com/css?family=Josefin+Slab:400,700|Amatic+SC);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Dosis:200,500);
 
 /* mixins, variables, etc. */
 
@@ -17,6 +18,10 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 60px;
+  font-family: 'Dosis', sans-serif;
+  font-weight: 500; 
+  color: #7F7F7F;
+  font-size: 16px;
 }
 
 section {
@@ -48,13 +53,11 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 2em;
+  font-weight: 200;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
-  font-weight: normal;
-  color: black;
-  font-family:  "Josefin Slab", serif;
 }
 
 p {
@@ -67,16 +70,14 @@ p {
 
 #logo {
   float: left;
+  font-weight: 200;
   margin-right: 10px;
   font-size: 2em;
-  color: GhostWhite;
-  text-transform: downcase;
-  font-family: 'Amatic SC', serif;
+  color: #7F7F7F;
   letter-spacing: -1px;
   padding-top: 9px;
-  font-weight: bold;
   &:hover {
-    color: LightYellow;
+    color: tomato;
     text-decoration: none;
   }
 }
@@ -84,10 +85,11 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin: 45px 25px 0px 25px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
+  bottom: 0;
   a {
     color: $gray;
     &:hover {
@@ -110,10 +112,10 @@ footer {
 /*map settings */
 
 .adp {
-  font-family: "Josefin Slab", serif;
   background-color: white;
   height: 610px;
   overflow:scroll;
+  font-size: .8em;
 }
 
 .warnbox-content {
@@ -144,13 +146,11 @@ footer {
  
 #directions-panel > div > div > div > table > tbody > tr{
     width: 100%;
-    font-family: 'Josefin Slab', serif;
     font-size:1.3em;
 }
 
 #directions-panel > div > div > div > table > tbody > tr{
     width: 100%;
-    font-family: 'Josefin Slab', serif;
 }
 
 
@@ -254,7 +254,6 @@ input, textarea, select, .uneditable-input {
 
 body > div > h2 {
     margin: 2px;
-    color: midnightblue;
 }
 
 input {
@@ -286,23 +285,22 @@ input {
 		position: relative;
 		min-height: 40px;
     float:right;
-    margin-left: -60px;
+    margin-left: -90px;
 	}	
 	.nav ul {
-		width: 69px;
+		width: 90px;
 		padding: 5px 0;
 		position: absolute;
 		top: 0;
 		left: 0;
-		background: #222222 url('https://scontent-2.2914.fna.fbcdn.net/hphotos-xpa1/v/t1.0-9/11203150_2656543167942_3759237938736669516_n.jpg?oh=58098c7ae8b475f16194188daab6e9de&oe=55DC1DA6') no-repeat;
+		background: #fff url('/img/back.png') no-repeat;
     background-position: right center;
-		border-radius: 5px;
-		box-shadow: 0 1px 2px rgba(0,0,0,.3);
+		background-shadow: 0 1px 2px rgba(0,0,0,.3);
 	}
 	.nav li {
 		display: none; /* hide all <li> items */
 		margin: 0;
-    color: #222222;
+    color: #7F7F7F;
 	}
 	.nav .current {
 		display: block; /* show only current <li> item */
@@ -314,13 +312,14 @@ input {
 	}
 	.nav .current a {
 		background: none;
-		color: #521dcf;
+    color: tomato;
 	}
 
 	/* on nav hover */
 	.nav ul:hover {
 		background-image: none;
 	}
+  
 	.nav ul:hover li {
 		display: block;
 		margin: 0 0 5px;
@@ -328,6 +327,10 @@ input {
 	.nav ul:hover .current {
 		background: url(images/icon-check.png) no-repeat 10px 7px;
 	}
+	.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: tomato;
+	}
+
 
 	/* right nav */
 	.nav.right ul {
@@ -367,14 +370,15 @@ input {
 #step-count{
     height:45px;
     font-size:.8em;
+    width: 100%;
+    text-align: center;
 } 
 
 }
 
 
 form label{
-  font-size: 1.2em;
-  font-family:  "Josefin Slab", serif; 
+  font-size: 1em; 
   font-weight: normal;
   text-transform: lowercase;
 }
@@ -399,12 +403,10 @@ form label{
      border:1px solid midnightblue;
      padding:15px;
      text-align:center;
-     font-family: 'Amatic SC', serif;
 }
 
 .route {
   display:none;
-  font-family:  "Josefin Slab", serif;
 }
 
 body > div.container > a {
@@ -412,22 +414,17 @@ body > div.container > a {
 }
 
 #step-count {
-    font-family: "Josefin Slab";
     font-size: 1.3em;
-    width: 70%;
+    width: 100%;
     border: 2px LightGray solid;
     float:left;
+    text-align: center;
     overflow:scroll;
 }
 
 .map {
   display: none;
-  float:left; 
-  width: 30%;
-  height:45px;
-  background-color: tomato;
   text-transform: lowercase;
-  font-family: "Josefin Slab", serif;
   font-size: 1.2em
 }
 
@@ -448,3 +445,37 @@ body > div.container > a {
   width:100%;
 }
 
+// nav 
+.navbar {
+    background-color: white;
+     border-bottom: #7F7F7F;
+}
+
+.navbar-fixed-top {
+   border-bottom: #7F7F7F;
+} 
+.navbar-inverse {
+  border-bottom: #7F7F7F;
+}
+
+.btn-primary {
+ margin: 5px; 
+}
+
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+		display: block;
+		margin: 0 0 5px;
+    color: tomato;
+	}
+
+// hiding about and contact if the screen is a lot smaller
+@media screen and (max-width: 305px) {
+  .footer_links{
+    display:none; 
+  }
+}
+
+.btn, .btn-primary {
+    margin-left: -.01px
+}
