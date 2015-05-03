@@ -36,4 +36,9 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+  
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
 end
