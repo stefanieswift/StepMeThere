@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get 'logout'  => 'sessions#destroy'
   resources :users
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  default_url_options :host => "stepmethere.herokuapp.com"
 end
