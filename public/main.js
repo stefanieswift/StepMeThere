@@ -110,6 +110,7 @@ function showMap()
     // set the div id where it will be shown
     // set the map options
   map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  
 
   // show route between the points
   directionsService = new google.maps.DirectionsService();
@@ -140,7 +141,8 @@ function showMap()
     }
     if(distance > stepDistance){
       directionsDisplay.setDirections(response);
-    $("#overlay div").html("<p>The shortest step count is: "+distance+"</p><p>Click here to [<a href='#' onclick='overlay()'>close</a>]</p>");
+      resizeMap(map);
+     $("#step-count").html("<p>Sorry, the shortest route is: "+Math.round(distance)+" steps.</p>")
     } else {
       steppingDistanceDifference = stepDistance/110574.61;
       for(i = 0; i < 15; i = i + .005){
@@ -169,7 +171,8 @@ function showMap()
                     closest = distanced;
                     bestWaypnt = latlngPush;
                     directionsDisplay.setDirections(newResponse);
-                  $("#step-count").html("<p>Step distance: "+distance+"</p>");
+                    resizeMap(map);
+                  $("#step-count").html("<p>Steps: "+Math.round(distance)+"</p>");
                   };
                 } else {
                   distanced = distance - stepDistance;
@@ -177,7 +180,9 @@ function showMap()
                     closest = distanced;
                     bestWaypnt = latlngPush;
                     directionsDisplay.setDirections(newResponse);
-                  $("#step-count").html("<p>Step distance: "+distance+"</p>");
+                    resizeMap(map);
+                    
+                  $("#step-count").html("<p>Steps: "+Math.round(distance)+"</p>");
                  };
                 };
             };
@@ -259,7 +264,7 @@ function showMap()
 
 function overlay() {
 	el = document.getElementById("overlay");
-	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+	el.style.display = (el.style.display == "block") ? "none" : "block";
 };
 
 // map button
@@ -304,3 +309,11 @@ $("#map_button").on("click", function(e){
       timeout: 10 * 1000 // 10 seconds
     });
   });
+  
+   function resizeMap(m) {
+        x = m.getZoom();
+        c = m.getCenter();
+        google.maps.event.trigger(m, 'resize');
+        m.setZoom(x);
+        m.setCenter(c);
+    };
