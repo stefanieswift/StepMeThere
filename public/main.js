@@ -311,3 +311,13 @@ $("#map_button").on("click", function(e){
         m.setZoom(x);
         m.setCenter(c);
     };
+    
+//  creating the button click feature for iphone
+
+var mq = window.matchMedia( "(max-width: 500px)" );
+
+if (mq.matches) {
+	$(".nav").on("click",function(){
+    $(".nav > ul > li").css("display", "block")
+  })
+}
