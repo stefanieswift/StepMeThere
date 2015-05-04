@@ -141,11 +141,13 @@ function showMap()
     }
     if(distance > stepDistance){
       directionsDisplay.setDirections(response);
-      resizeMap(map);
-     $("#step-count").html("<p>Sorry, the shortest route is: "+Math.round(distance)+" steps.</p>")
+      $("#step-count").html("<p>Sorry, the shortest route is: "+Math.round(distance)+" steps.</p>");
+      overlay();
+      $("#map_route").css("display", "inline");
+      $(".map_hide").css("display", "inline");
+       resizeMap(map);
     } else {
       steppingDistanceDifference = stepDistance/110574.61;
-      console.log(steppingDistanceDifference)
       for(i = 0; i < 15; i = i + .005){
        for (j=0; j < 15; j = j + .005){
         var waypts = [];
@@ -321,4 +323,3 @@ if (mq.matches) {
     $(".nav > ul > li").css("display", "block")
   })
 }
-
