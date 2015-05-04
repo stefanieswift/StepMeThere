@@ -70,11 +70,7 @@ p {
 
 #logo {
   float: left;
-  font-weight: 200;
   margin-right: 10px;
-  font-size: 2em;
-  color: #7F7F7F;
-  letter-spacing: -1px;
   padding-top: 9px;
   &:hover {
     color: tomato;
@@ -519,4 +515,8 @@ body > div.container > a {
  -webkit-transform: translateY(0%); /* Browser bug fix */
  transform: translateY(0%); 
  }
+}
+#calculate-route > label {
+    font-weight: 400;
+    font-size:1.1em;
 }
