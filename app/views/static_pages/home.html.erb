@@ -6,16 +6,16 @@
   <form class="center" id="calculate-route" name="calculate-route" action="#" method="get">
       <p>
         <label>Origin: </label>
-        <input type="text" class="form-control name="address1" id="from" size="50">
+        <input type="text" class="form-control name="address1" placeholder="ex: 123 Dolores Street, San Francisco"  id="from" size="50">
         <a class="getlocation" id="from-link" href="#">Get my position</a>
       </p>
       <p>
          <label>Destination: </label>
-         <input type="text" class="form-control" name="address2" id="to" size="50">
-         <a class="getlocation" id="to-link" href="#">Get my position</a>
+         <input type="text" class="form-control" placeholder="ex: 1 Embarcadero Center, San Francisco" name="address2" id="to" size="50">
+         <a class="getlocation"  id="to-link" href="#">Get my position</a>
       </p>
          <label>Step Count: </label>
-         <input type="integer" class="form-control" name="steps" id="steps" size="10" required>
+         <input type="integer" class="form-control" placeholder="ex: 5000" name="steps" id="steps" size="10" required>
       <input type="button" class="btn btn-primary" id="submit" value="Show" onclick="initialize();" />
       <input type="reset" class="btn btn-primary" value="Reset"/>
   </form>
