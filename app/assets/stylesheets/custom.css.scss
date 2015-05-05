@@ -20,7 +20,7 @@ body {
   border-top: .08em #7F7F7F solid;
   padding-top: 80px;
   font-family: 'Dosis', sans-serif;
-  font-weight: 500; 
+  font-weight: 500;
   color: #7F7F7F;
   font-size: 16px;
 }
@@ -87,8 +87,8 @@ body > header > div {
   letter-spacing: -1px;
   padding-top: 9px;
   &:active, &:hover {
-    -moz-box-shadow: 0 2px tomato; 
-    -webkit-box-shadow: 0 2px tomato; 
+    -moz-box-shadow: 0 2px tomato;
+    -webkit-box-shadow: 0 2px tomato;
     box-shadow:  0 2px tomato;
   }
   img{
@@ -169,7 +169,7 @@ footer {
 #directions-panel > div > div > div > table > tbody > tr > td:nth-child(2){
     display:none;
 }
- 
+
 #directions-panel > div > div > div > table > tbody > tr{
     width: 100%;
    font-family: 'Dosis', sans-serif;
@@ -204,6 +204,7 @@ footer {
 #directions-panel {
     float: left;
     width: 30%;
+    height: 600px;
     overflow: scroll;
   }
 
@@ -312,7 +313,7 @@ input {
 		min-height: 40px;
     float:right;
     margin-left: -90px;
-	}	
+	}
 	.nav ul {
 		width: 90px;
 		padding: 5px 0;
@@ -345,7 +346,7 @@ input {
 	.nav ul:hover, .nav ul:active {
 		background-image: none;
 	}
-  
+
 	.nav ul:hover li, .nav ul:active li {
 		display: block;
 		margin: 0 0 5px;
@@ -379,11 +380,11 @@ input {
 #map_canvas{
     height:50%;
     width: 100%;
-    min-height: 400px; 
+    min-height: 400px;
 }
 
 .adp{
-    width:100%; 
+    width:100%;
     padding: 0px;
 }
 
@@ -398,13 +399,13 @@ input {
     font-size:.8em;
     width: 100%;
     text-align: center;
-} 
+}
 
 }
 
 
 form label{
-  font-size: 1em; 
+  font-size: 1em;
   font-weight: normal;
   text-transform: lowercase;
 }
@@ -467,7 +468,7 @@ body > div.container > a {
   width:100%;
 }
 
-// nav 
+// nav
 .navbar {
     background-color: white;
      border-bottom: #7F7F7F;
@@ -475,13 +476,13 @@ body > div.container > a {
 
 .navbar-fixed-top {
    border-bottom: #7F7F7F;
-} 
+}
 .navbar-inverse {
   border-bottom: #7F7F7F;
 }
 
 .btn-primary {
- margin: 5px; 
+ margin: 5px;
 }
 
 
@@ -494,7 +495,7 @@ body > div.container > a {
 // hiding about and contact if the screen is a lot smaller
 @media screen and (max-width: 305px) {
   .footer_links{
-    display:none; 
+    display:none;
   }
 }
 
@@ -505,19 +506,19 @@ body > div.container > a {
 // move image
 
 .vertically {
- height: 100px;	
+ height: 100px;
  overflow: hidden;
  position: relative;
-} 
+}
 .vertically .inner {
  position: absolute;
  width: 100%;
  height: 100%;
  /* Starting position */
  -moz-transform:translateY(40%);
- -webkit-transform:translateY(40%);	
+ -webkit-transform:translateY(40%);
  transform:translateY(40%);
- /* Apply animation to this element */	
+ /* Apply animation to this element */
  -moz-animation: vertically 5s linear infinite alternate;
  -webkit-animation: vertically 5s linear infinite alternate;
  animation: vertically 5s linear infinite alternate;
@@ -532,14 +533,14 @@ body > div.container > a {
  100% { -webkit-transform: translateY(0%); }
 }
 @keyframes vertically {
- 0%   { 
+ 0%   {
  -moz-transform: translateY(70%); /* Browser bug fix */
  -webkit-transform: translateY(70%); /* Browser bug fix */
- transform: translateY(70%); 		
+ transform: translateY(70%);
  }
- 100% { 
+ 100% {
  -moz-transform: translateY(0%); /* Browser bug fix */
  -webkit-transform: translateY(0%); /* Browser bug fix */
- transform: translateY(0%); 
+ transform: translateY(0%);
  }
 }
