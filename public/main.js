@@ -7,11 +7,11 @@ $(document).ready(function(){
         };
         // Draw the map
         var mapObject = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
-        
+
 
  });
- 
- 
+
+
 
 var location1,
     location2,
@@ -110,7 +110,7 @@ function showMap()
     // set the div id where it will be shown
     // set the map options
   map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-  
+
 
   // show route between the points
   directionsService = new google.maps.DirectionsService();
@@ -133,7 +133,7 @@ function showMap()
 
   directionsService.route(request, function(response, status)
   {
-    
+
     if (status == google.maps.DirectionsStatus.OK)
     {
       // directionsDisplay.setDirections(response);
@@ -167,7 +167,7 @@ function showMap()
               avoidFerries: true,
             };
           directionsService.route(newRequest, function(newResponse, status){
-              if (status == google.maps.DirectionsStatus.OK){ 
+              if (status == google.maps.DirectionsStatus.OK){
                 distance = (newResponse.routes[0].legs[0].distance.value + newResponse.routes[0].legs[1].distance.value) * 1.3123359580052494;
                 console.log(distance);
                 console.log("closest"+closest)
@@ -180,7 +180,7 @@ function showMap()
                   directionsDisplay.setDirections(newResponse);
                   resizeMap(map);
                 $("#step-count").html("<p>Steps: "+Math.round(distance)+"</p>");
-                } 
+                }
             };
           });
         }
@@ -190,7 +190,7 @@ function showMap()
       $(".map_hide").css("display", "inline");
     }; //closing else
   });
-  
+
     // show a line between the two points
     var line = new google.maps.Polyline({
       map: map,
@@ -199,7 +199,7 @@ function showMap()
       strokeOpacity: 0.8,
       strokeColor: "#FFAA00"
     });
-  
+
     // create the markers for the two locations
     var marker1 = new google.maps.Marker({
       map: map,
@@ -211,7 +211,7 @@ function showMap()
       position: location2,
       title: "Second location"
     });
-  
+
     // create the text to be shown in the infowindows
     var text1 = '<div id="content">'+
         '<h1 id="firstHeading">First location</h1>'+
@@ -220,7 +220,7 @@ function showMap()
         '<p>Address: '+from+'</p>'+
         '</div>'+
         '</div>';
-  
+
     var text2 = '<div id="content">'+
       '<h1 id="firstHeading">Second location</h1>'+
       '<div id="bodyContent">'+
@@ -228,7 +228,7 @@ function showMap()
       '<p>Address: '+to+'</p>'+
       '</div>'+
       '</div>';
-  
+
     // create info boxes for the two markers
     var infowindow1 = new google.maps.InfoWindow({
       content: text1
@@ -236,8 +236,8 @@ function showMap()
     var infowindow2 = new google.maps.InfoWindow({
       content: text2
     });
-  
-  
+
+
     // add action events so the info windows will be shown when the marker is clicked
     google.maps.event.addListener(marker1, 'click', function() {
       infowindow1.open(map,marker1);
@@ -246,15 +246,15 @@ function showMap()
       infowindow2.open(map,marker1);
     });
   }
-  
+
   function toRad(deg)
   {
     return deg * Math.PI/180;
   }
-  
-  
+
+
   // funcion to test added
-  
+
 
 // overlay
 
@@ -280,11 +280,11 @@ $("#map_button").on("click", function(e){
   if (typeof navigator.geolocation == "undefined") {
     $("#error").text("Your browser doesn't support the Geolocation API");
   }
-  
+
   $("#from-link, #to-link").click(function(event) {
     event.preventDefault();
     var addressId = this.id.substring(0, this.id.indexOf("-"));
-  
+
     navigator.geolocation.getCurrentPosition(function(position) {
       var geocoder = new google.maps.Geocoder();
       geocoder.geocode({
@@ -305,7 +305,7 @@ $("#map_button").on("click", function(e){
       timeout: 10 * 1000 // 10 seconds
     });
   });
-  
+
    function resizeMap(m) {
         x = m.getZoom();
         c = m.getCenter();
@@ -313,7 +313,7 @@ $("#map_button").on("click", function(e){
         m.setZoom(x);
         m.setCenter(c);
     };
-    
+
 //  creating the button click feature for iphone
 
 var mq = window.matchMedia( "(max-width: 500px)" );
@@ -322,4 +322,20 @@ if (mq.matches) {
 	$(".nav").on("click",function(){
     $(".nav > ul > li").css("display", "block")
   })
+}
+
+// make sure origin and destination are filled out
+
+function checkForm () {
+    var errors = "";
+    var $blankFields =$('#calculate-route .required').filter(function () {
+        return $.trim($(this).val()) === "";
+    });
+    if ($blankFields.length) {
+        $blankFields.each(function () {
+            errors += "Please enter a value for " + $(this).attr('name') + "<br />";
+        });
+        return false;
+    }
+    initialize();
 }
