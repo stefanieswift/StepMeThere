@@ -1,3 +1,4 @@
+# enabling password reset feature
 class PasswordResetsController < ApplicationController
   before_action :get_user,         only: [:edit, :update]
   before_action :valid_user,       only: [:edit, :update]
@@ -11,10 +12,10 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash.now[:info] = "Email sent with password reset instructions"
+      flash.now[:info] = 'Email sent with password reset instructions'
       redirect_to root_url
     else
-      flash.now[:danger] = "Email address not found"
+      flash.now[:danger] = 'Email address not found'876
       render 'new'
     end
   end

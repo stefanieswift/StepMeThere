@@ -1,3 +1,4 @@
+# add reset
 class AddResetToUsers < ActiveRecord::Migration
   def change
     add_column :users, :reset_digest, :string

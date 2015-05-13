@@ -1,3 +1,4 @@
+# main pages controller
 class StaticPagesController < ApplicationController
 
   def home

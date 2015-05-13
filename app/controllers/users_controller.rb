@@ -1,3 +1,4 @@
+# users controller
 class UsersController < ApplicationController
 attr_accessor :remember_token, :reset_token
 
