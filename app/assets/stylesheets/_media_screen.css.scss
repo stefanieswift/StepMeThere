@@ -1,0 +1,95 @@
+@media screen and (max-width: 770px) {
+  .nav {
+    position: relative;
+    min-height: 40px;
+    float:right;
+    margin-left: -90px;
+  }
+  .nav ul {
+    width: 90px;
+    padding: 30px 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff url('/img/media_menu.svg') no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  .nav li {
+    display: none; /* hide all <li> items */
+    margin: 0;
+    color: #7F7F7F;
+  }
+  .nav .current {
+    display: block; /* show only current <li> item */
+  }
+  .nav a {
+    display: block;
+    padding: 5px 5px 5px 32px;
+    text-align: left;
+  }
+  .nav .current a {
+    background: none;
+    color: tomato;
+  }
+
+  /* on nav hover */
+  .nav ul:hover, .nav ul:active {
+    background-image: none;
+  }
+
+  .nav ul:hover li, .nav ul:active li {
+    display: block;
+    margin: 0 0 5px;
+  }
+  .nav ul:hover .current, .nav ul:active .current {
+    background: url(images/icon-check.png) no-repeat 10px 7px;
+  }
+  .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:active, .navbar-inverse .navbar-nav > li > a:focus {
+    color: tomato;
+  }
+
+
+  /* right nav */
+  .nav.right ul {
+    left: auto;
+    right: 0;
+  }
+
+  /* center nav */
+  .nav.center ul {
+    left: 50%;
+    margin-left: -90px;
+  }
+#map-canvas {
+  display:none;
+}
+.form{
+  height:100%;
+  width: 100%;
+}
+#map_canvas{
+    height:50%;
+    width: 100%;
+    min-height: 400px;
+}
+
+.adp{
+    width:100%;
+    padding: 0px;
+}
+
+#directions-panel {
+    width:100%;
+    max-height: 200px;
+    overflow:auto;
+}
+
+#step-count{
+    height:45px;
+    font-size:.8em;
+    width: 100%;
+    text-align: center;
+}
+
+}
