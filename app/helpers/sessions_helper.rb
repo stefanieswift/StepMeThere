@@ -1,3 +1,4 @@
+#sessions helper
 module SessionsHelper
 
   # Logs in the given user.
@@ -48,7 +49,7 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
-  
+
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)
